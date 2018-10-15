@@ -1,0 +1,27 @@
+.column {
+  margin: 2%;
+  padding: 1%;
+  border: solid red;
+  border-radius: 2px;
+  min-height: 500px;
+  min-width: 25%
+}
+
+.taskList {
+  margin: 2%;
+  padding: 1%;
+  outline: orange solid;
+  background: yellow
+}
+
+.task {
+  margin: 2%;
+  padding: 1%;
+  border: solid yellow;
+  margin-bottom: 2%;
+  border-radius: 2px
+}
+
+.title {
+  padding: 8px
+}
