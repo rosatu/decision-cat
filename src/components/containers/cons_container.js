@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import '../../stylesheets/containers.css'
-import Factor from '../factor'
 
 export default class FactorsContainer extends Component{
   render() {

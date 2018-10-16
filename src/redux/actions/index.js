@@ -1,5 +1,4 @@
 export const loadQuestions = () =>{
-  console.log("in loadQuestions")
   return (dispatch) => {
     fetch('http://localhost:3000/api/v1/questions')
     .then(r=> r.json())
@@ -11,7 +10,6 @@ export const loadQuestions = () =>{
   }
 }
 export const loadFactors = () =>{
-  console.log("in loadFactors")
   return (dispatch) => {
     fetch('http://localhost:3000/api/v1/factors')
     .then(r=> r.json())
@@ -21,4 +19,12 @@ export const loadFactors = () =>{
     })
   )
   }
+}
+
+export const onDragEnd = result => {
+  return{
+    type: 'DRAG_END',
+    payload: result
+  }
+
 }

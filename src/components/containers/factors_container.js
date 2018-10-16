@@ -12,7 +12,6 @@ const Title = styled.h3``
 
 class FactorsContainer extends Component{
   render() {
-    console.log("factors component",this.props);
     return(
     <Container className='column'>
     <Title className='title'>Factors</Title>
@@ -33,7 +32,7 @@ class FactorsContainer extends Component{
 
 const mapStateToProps = (state) => {
   return {
-    container: state.containers[0],
+    container: state.containers['container-1'],
     factors: state.factors
   }
 }
