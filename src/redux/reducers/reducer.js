@@ -1,7 +1,12 @@
 const initialState = {
+  currentUser: {name: "Eric Kim", id:1},
   questions: [],
   factors: [],
-  currentQ: {question:""},
+  pros: [],
+  weight: .5,
+  weightedPros: {},
+  cons: [],
+  currentQ: '',
     containers: {
       'container-1': {
         id: 'container-1',
@@ -24,6 +29,7 @@ const initialState = {
 
 /// these are taking in the state and replacing it with a new state depending on what actions are dispatched
 export const reducer = (state = initialState, action) => {
+  console.log("reducer", action);
 
 
   switch (action.type) {
@@ -37,31 +43,76 @@ export const reducer = (state = initialState, action) => {
       ...state,
       factors: action.payload
     }
+
+    case 'UPDATE_CURRENT_Q':
+    return {
+      ...state,
+      currentQ: action.payload
+    }
+    case 'ADD_FACTOR':
+    return {
+      ...state,
+      factors: [...state.factors, action.payload]
+    }
     case "DRAG_END":
   //   const {destination, source, draggableId} = action.payload
   // if (!destination || (destination.droppableId === source.droppableId && destination.index === source.index))
   return{
       ...state
-   }
-  //   const container = action.payload.source.droppableId
-  //   const newFactorIds = Array.from(container.factorIds);
-  //   newFactorIds.splice(source.index, 1)
-  //   newFactorIds.splice(destination.index, 0, draggableId)
-  //   const newContainer = {
-  //     ...container,
-  //     factorIds: newFactorIds
-  //   }
-  //   return{
-  //     ...state,
-  //     containers: {
-  //       ...state.containers,
-  //       [newContainer.id]: newContainer
-  //       }
-  //     }
+   // }
+   //  const container = action.payload.source.droppableId
+   //  const newFactorIds = Array.from(container.factorIds);
+   //  newFactorIds.splice(source.index, 1)
+   //  newFactorIds.splice(destination.index, 0, draggableId)
+   //  const newContainer = {
+   //    ...container,
+   //    factorIds: newFactorIds
+   //  }
+   //  return{
+   //    ...state,
+   //    containers: {
+   //      ...state.containers,
+   //      [newContainer.id]: newContainer
+   //      }
+      }
 
+      case 'MOVE_TO_CON':
+      return {
+        ...state,
+        factors: state.factors.filter(factor => factor.id !== action.payload.id),
+        cons: state.cons.length? [...state.cons, action.payload] : [action.payload]
+      }
 
-    return
+      case 'MOVE_TO_PRO':
+      return {
+        ...state,
+        factors: state.factors.filter(factor => factor.id !== action.payload.id),
+        pros: state.pros.length? [...state.pros, action.payload] : [action.payload]
+      }
+
+      case 'DELETE_FACTOR':
+      return {
+        ...state,
+        factors: state.factors.filter(factor => factor.id !== action.payload.id)
+      }
+      case 'UPDATE_PRO_WEIGHT':
+      const weightedPro = {...action.payload2, weight: parseFloat(action.payload1)}
+      return {
+        ...state,
+        pros: [...state.pros.map(pro => pro.id === action.payload2.id ? weightedPro : pro)]
+      }
+      case 'UPDATE_CON_WEIGHT':
+      const weightedCon = {...action.payload2, weight: parseFloat(action.payload1)}
+      return {
+        ...state,
+        cons: [...state.cons.map(con => con.id === action.payload2.id ? weightedCon : con)]
+      }
+      case 'DECIDE':
+      return {
+        ...state,
+        decision: action.payload
+      }
     default:
-  return state
+    return state
 }
 }

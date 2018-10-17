@@ -1,15 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux'
+import {handleCurrentQ} from '../../redux/actions'
 
-const QuestionContainer = ({questions}) =>{
+const QuestionsContainer = ({questions, handleCurrentQ}) =>{
   return(
     <div>
     <label>Choose a question</label>
-    <select >
-      {questions.map(question => question.question)}
+    <select onChange={handleCurrentQ}>
+      {questions.map(question => <option key={question.id}>{question.question}</option>)}
     </select>
     <br/>
-    <label>Or write your own question</label><textarea placeholder="type your question here"/>
+    <label>Or write your own question</label><textarea onChange={handleCurrentQ}placeholder="type your question here"/>
     </div>
   )
 }
@@ -21,4 +22,4 @@ const mapStateToProps = (state)=> {
   }
 }
 
-export default connect(mapStateToProps)(QuestionContainer)
+export default connect(mapStateToProps, {handleCurrentQ})(QuestionsContainer)

@@ -1,10 +1,19 @@
-.column {
+.third {
   margin: 2%;
   padding: 1%;
   border: solid red;
   border-radius: 2px;
   min-height: 500px;
   min-width: 25%
+}
+
+.short-column {
+  margin: 2%;
+  padding: 1%;
+  border: solid lightgrey;
+  border-radius: 1px;
+  min-height: 100px;
+  min-width: 40%
 }
 
 .taskList {
