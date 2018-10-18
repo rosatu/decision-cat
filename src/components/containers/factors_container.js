@@ -13,7 +13,6 @@ const Title = styled.h3``
 
 class FactorsContainer extends Component{
   render() {
-    console.log(this.refs)
     return(
     <Container className='column'>
     <Title className='title'>Factors</Title>

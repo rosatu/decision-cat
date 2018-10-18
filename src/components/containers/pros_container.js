@@ -1,16 +1,29 @@
 import React from 'react';
 import '../../stylesheets/containers.css'
 import {connect} from 'react-redux'
-import {handleProSlider} from '../../redux/actions'
+import Pro from '../pro'
+import styled from 'styled-components'
+import { Droppable } from 'react-beautiful-dnd'
+import TaskList from './tasklist'
 
- const ProsContainer = ({pros,handleProSlider,weight}) =>  {
+const Container = styled.div``
+
+ const ProsContainer = ({pros,weight, container}) =>  {
     return(
-    <div className='column'>
+    <Container className='column'>
     <h3 className='title'>PROS</h3>
     <label>{"Once you select your pros, drag slider to left for something thats really important, drag to right if it's less important"}</label>
-    {pros.map(pro => <div><div className="taskList">{pro.name}</div> <input onChange={(e)=>handleProSlider(pro,e)}type="range" min="0" max="1" name="pro-slider" value={pro.weight} step="0.10" class="slider" id="myRange" key={pro.name} /></div> )}
-
-    </div>
+      <Droppable droppableId={container}>
+      {provided=>(
+          <TaskList
+          innerRef={provided.innerRef}
+          {...provided.droppableProps}>
+          {pros.map((pro, index) => <Pro pro={pro} id={pro.id} index={index} name={pro.name} weight={pro.weight}/>)}
+          {provided.placeholder}
+          </TaskList>
+        )}
+      </Droppable>
+      </Container>
   )
   }
 
@@ -18,7 +31,8 @@ const mapStateToProps = state => {
   return{
     ...state,
     pros: state.pros,
-    weight: state.weight
+    weight: state.weight,
+    container: state.containers['container-2']
   }
 }
-export default connect(mapStateToProps, {handleProSlider})(ProsContainer)
+export default connect(mapStateToProps)(ProsContainer)

@@ -78,6 +78,22 @@ export const handleDelete = (factor) => {
     payload: factor
   }
 }
+
+export const handleProDelete = (pro) => {
+  console.log("delete", pro)
+  return{
+    type: 'DELETE_PRO',
+    payload: pro
+  }
+}
+export const handleConDelete = (con) => {
+  console.log("delete", con)
+  return{
+    type: 'DELETE_CON',
+    payload: con
+  }
+}
+
 export const handleProSlider = (pro, e) => {
   e.preventDefault()
   return{

@@ -11,7 +11,7 @@ const initialState = {
       'container-1': {
         id: 'container-1',
         title: 'FactorsContainer',
-        factorIds: [1,2]
+        factorIds: []
       },
       'container-2': {
         id: 'container-2',
@@ -29,19 +29,21 @@ const initialState = {
 
 /// these are taking in the state and replacing it with a new state depending on what actions are dispatched
 export const reducer = (state = initialState, action) => {
-  console.log("reducer", action);
-
-
   switch (action.type) {
     case "LOAD_QUESTIONS":
     return {
       ...state,
       questions: action.payload
     }
+
     case "LOAD_FACTORS":
+    const factorIds = action.payload.map(factor=> factor.id)
     return {
       ...state,
-      factors: action.payload
+      factors: action.payload,
+      containers: {...state.containers,
+        "container-1": {...state.containers['container-1'], factorIds: factorIds}
+      },
     }
 
     case 'UPDATE_CURRENT_Q':
@@ -55,11 +57,17 @@ export const reducer = (state = initialState, action) => {
       factors: [...state.factors, action.payload]
     }
     case "DRAG_END":
-  //   const {destination, source, draggableId} = action.payload
-  // if (!destination || (destination.droppableId === source.droppableId && destination.index === source.index))
+    const {destination, source} = action.payload
+  if (!destination || (destination.droppableId === source.droppableId && destination.index === source.index))
   return{
       ...state
-   // }
+   }
+   if (!destination || (destination.droppableId === source.droppableId && destination.index === source.index))
+   return{
+       ...state
+    }
+
+   break;
    //  const container = action.payload.source.droppableId
    //  const newFactorIds = Array.from(container.factorIds);
    //  newFactorIds.splice(source.index, 1)
@@ -74,7 +82,7 @@ export const reducer = (state = initialState, action) => {
    //      ...state.containers,
    //      [newContainer.id]: newContainer
    //      }
-      }
+
 
       case 'MOVE_TO_CON':
       return {
@@ -94,6 +102,18 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         factors: state.factors.filter(factor => factor.id !== action.payload.id)
+      }
+      case 'DELETE_PRO':
+      return {
+        ...state,
+        factors: [...state.factors, action.payload],
+        pros: state.pros.filter(pro => pro.id !== action.payload.id)
+      }
+      case 'DELETE_CON':
+      return {
+        ...state,
+        factors: [...state.factors, action.payload],
+        cons: state.cons.filter(con => con.id !== action.payload.id)
       }
       case 'UPDATE_PRO_WEIGHT':
       const weightedPro = {...action.payload2, weight: parseFloat(action.payload1)}

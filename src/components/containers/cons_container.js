@@ -1,24 +1,38 @@
-import React, {Component} from 'react';
+import React from 'react';
 import '../../stylesheets/containers.css'
 import {connect} from 'react-redux'
-import {handleConSlider} from '../../redux/actions'
+import Con from '../con'
+import styled from 'styled-components'
+import { Droppable } from 'react-beautiful-dnd'
+import TaskList from './tasklist'
 
-class ConsContainer extends Component{
-  render() {
+const Container = styled.div``
+
+ const ConsContainer = ({cons,weight, container}) =>  {
     return(
-    <div className='column'>
+    <Container className='column'>
     <h3 className='title'>CONS</h3>
-    <label>{"Once you select your cons, drag slider to left for something thats really important, drag to right if it's less important"}</label>
-  {this.props.cons.map(con => <div><div className="taskList">{con.name}</div> <input onChange={(e)=>this.props.handleConSlider(con,e)}type="range" min="0" max="1" name="con-slider" value={con.weight} step="0.10" class="slider" id="myRange" key={con.name}/> </div>)}
-    </div>
+    <label>{"Once you select your cons, drag slider to right for something thats really important, drag left if it's less important"}</label>
+      <Droppable droppableId={container}>
+      {provided=>(
+          <TaskList
+          innerRef={provided.innerRef}
+          {...provided.droppableProps}>
+          {cons.map((con, index) => <Con con={con} id={con.id} index={index} name={con.name} weight={con.weight}/>)}
+          {provided.placeholder}
+          </TaskList>
+        )}
+      </Droppable>
+      </Container>
   )
   }
-}
 
 const mapStateToProps = state => {
   return{
     ...state,
-    cons: state.cons
+    cons: state.cons,
+    weight: state.weight,
+    container: state.containers['container-3']
   }
 }
-export default connect(mapStateToProps, {handleConSlider})(ConsContainer)
+export default connect(mapStateToProps)(ConsContainer)
