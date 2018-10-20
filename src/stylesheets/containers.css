@@ -7,6 +7,7 @@
   min-width: 25%
 }
 
+
 .short-column {
   margin: 2%;
   padding: 1%;
@@ -21,6 +22,18 @@
   padding: 1%;
   outline: orange solid;
   background: yellow
+}
+
+.container {
+  background-color: pink;
+  min-height: 500px;
+}
+
+.movingTaskList {
+  margin: 2%;
+  padding: 1%;
+  outline: orange solid;
+  background: green
 }
 
 .task {

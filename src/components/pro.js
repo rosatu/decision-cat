@@ -8,11 +8,12 @@ class Pro extends Component{
   render() {
     return (
     <Draggable draggableId={`draggable-${this.props.id}`} index={this.props.index}>
-    {(provided)=>(
+    {(provided, snapshot) =>(
       <Container
         {...provided.draggableProps}
         {...provided.dragHandleProps}
         innerRef={provided.innerRef}
+        isdragging={snapshot.isDragging}
       >
       {this.props.name}
       <input onChange={(e)=>this.props.handleProSlider(this.props.pro,e)}type="range" min="0" max="1" name="pro-slider" value={this.props.weight} step="0.10" class="slider" id="myRange" key={this.props.name} />

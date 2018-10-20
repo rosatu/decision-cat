@@ -8,7 +8,7 @@ import TaskList from './tasklist'
 
 const Container = styled.div``
 
- const ConsContainer = ({cons,weight, container}) =>  {
+ const ConsContainer = ({weight, container, factors}) =>  {
     return(
     <Container className='column'>
     <h3 className='title'>CONS</h3>
@@ -18,7 +18,7 @@ const Container = styled.div``
           <TaskList
           innerRef={provided.innerRef}
           {...provided.droppableProps}>
-          {cons.map((con, index) => <Con con={con} id={con.id} index={index} name={con.name} weight={con.weight}/>)}
+          {container.factorIds.map((con, index) => <Con con={factors[con]} id={factors[con].id} index={index} name={factors[con].name} weight={factors[con].weight}/>)}
           {provided.placeholder}
           </TaskList>
         )}
@@ -30,7 +30,7 @@ const Container = styled.div``
 const mapStateToProps = state => {
   return{
     ...state,
-    cons: state.cons,
+    factors: state.factors,
     weight: state.weight,
     container: state.containers['container-3']
   }

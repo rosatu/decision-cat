@@ -22,6 +22,7 @@ export const loadFactors = () =>{
 }
 
 export const onDragEnd = result => {
+  console.log(result)
   return{
     type: 'DRAG_END',
     payload: result

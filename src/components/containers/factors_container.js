@@ -13,20 +13,22 @@ const Title = styled.h3``
 
 class FactorsContainer extends Component{
   render() {
+    const {container, factors, handleNewFactor} = this.props
     return(
     <Container className='column'>
     <Title className='title'>Factors</Title>
-    <form onSubmit={(e) => { e.preventDefault(); this.props.handleNewFactor(this.refs.factor)}}>
+    <form onSubmit={(e) => { e.preventDefault(); handleNewFactor(this.refs.factor)}}>
     <label>Choose one, or create your own</label>
     <input type="text" ref="factor" />
     <input type='submit' value='submit'/>
     </form>
-    <Droppable droppableId={this.props.container}>
-    {provided=>(
+    <Droppable droppableId={container}>
+    {(provided, snapshot)=>(
         <TaskList
         innerRef={provided.innerRef}
-        {...provided.droppableProps}>
-        {this.props.factors.map((factor, index) => <Factor key={factor.id} factor={factor} index={index}/>)}
+        {...provided.droppableProps}
+        isdraggingover={snapshot.isDraggingOver}>
+        {container.factorIds.map((factor, index) => <Factor key={factors[factor].id} factor={factors[factor]} index={index}/>)}
         {provided.placeholder}
         </TaskList>
       )}
