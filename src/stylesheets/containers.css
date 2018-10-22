@@ -1,8 +1,9 @@
 .third {
   margin: 2%;
   padding: 1%;
-  border: solid red;
+  /* border: solid lightpink; */
   border-radius: 2px;
+  background: lightgrey;
   min-height: 500px;
   min-width: 25%
 }
@@ -11,17 +12,29 @@
 .short-column {
   margin: 2%;
   padding: 1%;
-  border: solid lightgrey;
+  /* border: solid darkgrey; */
   border-radius: 1px;
-  min-height: 100px;
-  min-width: 40%
+  min-height: 130px;
+  min-width: 40%;
+  font-size: 15pt;
+  background: lightgrey;
+  font-weight: 300;
+}
+
+.short-column:hover {
+  background-color: black;
+  transform: scale(1.1);
+  color: white;
 }
 
 .taskList {
   margin: 2%;
   padding: 1%;
-  outline: orange solid;
-  background: yellow
+  outline: darkgrey solid;
+  background: white;
+  min-height: 30px;
+  font-size: 20pt;
+  font-weight: 300;
 }
 
 .container {
@@ -41,9 +54,63 @@
   padding: 1%;
   border: solid yellow;
   margin-bottom: 2%;
-  border-radius: 2px
+  border-radius: 2px;
+}
+
+.taskList:hover {
+  background-color: black;
+  transform: scale(1.2);
+  color: white;
 }
 
 .title {
-  padding: 8px
+  padding: 8px;
+  font-size: 25pt;
+  font-weight: 300;
+  text-align: center;
+}
+
+.title:hover {
+  background-color: black;
+  transform: scale(1.5);
+  color: white;
+}
+
+.label {
+  padding: 8px;
+  font-size: 15pt;
+  font-weight: 300;
+}
+
+.label:hover {
+  background-color: black;
+  transform: scale(1.2);
+  color: white;
+}
+
+.answer{
+  text-align: center;
+  font-size: 50pt;
+  font-weight: 300;
+}
+
+.answer:hover {
+  background-color: lightpink;
+  transform: scale(5);
+}
+
+.button {
+  border: solid lightgrey;
+  padding: 5px;
+  font-size: 1em;
+  font-weight: 100;
+  transition: 0.3s
+}
+.xbutton {
+  border: solid lightgrey;
+  padding: 5px;
+  font-size: 1em;
+  font-weight: 100;
+  transition: 0.3s;
+  background: darkgrey
 }

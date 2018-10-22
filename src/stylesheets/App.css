@@ -3,9 +3,17 @@
 }
 
 .App-logo {
-  /* animation: App-logo-spin infinite 3s linear; */
+  /* animation: App-logo-spin infinite 6s linear; */
   height: 40vmin;
-  color: pink
+  -webkit-transition: -webkit-transform .8s ease-in-out;
+  -ms-transition: -ms-transform .8s ease-in-out;
+  transition: transform .8s ease-in-out;
+}
+
+.App-logo:hover{
+  transform:rotate(45deg);
+ -ms-transform:rotate(45deg);
+ -webkit-transform:rotate(45deg);
 }
 
 .App-header {
@@ -28,6 +36,6 @@
     transform: rotate(0deg);
   }
   to {
-    transform: rotate(45deg);
+    transform: rotate(360deg);
   }
 }

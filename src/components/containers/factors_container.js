@@ -16,11 +16,11 @@ class FactorsContainer extends Component{
     const {container, factors, handleNewFactor} = this.props
     return(
     <Container className='column'>
-    <Title className='title'>Factors</Title>
+    <Title className='title'>FACTORS</Title>
     <form onSubmit={(e) => { e.preventDefault(); handleNewFactor(this.refs.factor)}}>
-    <label>Choose one, or create your own</label>
-    <input type="text" ref="factor" />
-    <input type='submit' value='submit'/>
+    <label className='label'>NEW FACTOR</label>
+    <input className='label' type="text" ref="factor" />
+    <input className='label' type='submit' value='submit'/>
     </form>
     <Droppable droppableId={container}>
     {(provided, snapshot)=>(

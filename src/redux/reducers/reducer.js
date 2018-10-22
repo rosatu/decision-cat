@@ -1,3 +1,4 @@
+
 const initialState = {
   currentUser: {name: "Eric Kim", id:1},
   questions: [],
@@ -45,9 +46,7 @@ export const reducer = (state = initialState, action) => {
       ...state,
       factors: factorObj,
       containers: {...state.containers,
-        "container-1": {...state.containers['container-1'], factorIds: factorIds.slice(0, 5)},
-        "container-2": {...state.containers['container-2'], factorIds: factorIds.slice(5, 10)},
-        "container-3": {...state.containers['container-3'], factorIds: factorIds.slice(10, 12)}
+        "container-1": {...state.containers['container-1'], factorIds: factorIds}
       },
     }
 
@@ -63,7 +62,6 @@ export const reducer = (state = initialState, action) => {
     }
     case "DRAG_END":
     const {destination, source, draggableId} = action.payload
-    // debugger
   if (!destination || (destination.droppableId === source.droppableId && destination.index === source.index))
   return{
       ...state
@@ -117,18 +115,36 @@ export const reducer = (state = initialState, action) => {
 
 
       case 'MOVE_TO_CON':
+      const newNewFactIds = state.containers["container-1"].factorIds
+      newNewFactIds.splice(newNewFactIds.indexOf(action.payload.id), 1)
+      const newConIds = state.containers["container-3"].factorIds
+      newConIds.unshift(action.payload.id)
+      const wconsWCON = {...state.weightedCons}
+      wconsWCON[action.payload.id] = .5
       return {
         ...state,
-        factors: state.factors.filter(factor => factor.id !== action.payload.id),
-        cons: state.cons.length? [...state.cons, action.payload] : [action.payload]
+        containers: {...state.containers,
+          "container-1": {...state.containers['container-1'], factorIds: newNewFactIds},
+          "container-3": {...state.containers['container-3'], factorIds: newConIds}
+        },
+        weightedCons: wconsWCON
+      }
+      case 'MOVE_TO_PRO':
+      const newFactIds = state.containers["container-1"].factorIds
+      newFactIds.splice(newFactIds.indexOf(action.payload.id), 1)
+      const newProIds = state.containers["container-2"].factorIds
+      newProIds.unshift(action.payload.id)
+      const wprosWPRO = {...state.weightedPros}
+      wprosWPRO[action.payload.id] = .5
+      return {
+        ...state,
+        containers: {...state.containers,
+          "container-1": {...state.containers['container-1'], factorIds: newFactIds},
+          "container-2": {...state.containers['container-2'], factorIds: newProIds}
+        },
+        weightedPros: wprosWPRO
       }
 
-      case 'MOVE_TO_PRO':
-      return {
-        ...state,
-        factors: state.factors.filter(factor => factor.id !== action.payload.id),
-        pros: state.pros.length? [...state.pros, action.payload] : [action.payload]
-      }
       case 'DELETE_FACTOR':
       const factIds = state.containers["container-1"].factorIds
       factIds.splice(factIds.indexOf(action.payload.id), 1)
@@ -156,14 +172,14 @@ export const reducer = (state = initialState, action) => {
       }
 
       case 'UPDATE_PRO_WEIGHT':
-      const newWeightedPros = state.weightedPros
+      const newWeightedPros = {...state.weightedPros}
       newWeightedPros[action.payload2.id] = parseFloat(action.payload1)
       return {
         ...state,
         weightedPros: newWeightedPros
       }
       case 'UPDATE_CON_WEIGHT':
-      const newWeightedCons = state.weightedCons
+      const newWeightedCons = {...state.weightedCons}
       newWeightedCons[action.payload2.id] = parseFloat(action.payload1)
       return {
         ...state,

@@ -12,7 +12,6 @@ const Container = styled.div``
     return(
     <Container className='column'>
     <h3 className='title'>CONS</h3>
-    <label>{"Once you select your cons, drag slider to right for something thats really important, drag left if it's less important"}</label>
       <Droppable droppableId={conContainer}>
       {provided=>(
           <TaskList

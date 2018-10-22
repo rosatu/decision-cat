@@ -5,12 +5,12 @@ import {handleCurrentQ} from '../../redux/actions'
 const QuestionsContainer = ({questions, handleCurrentQ}) =>{
   return(
     <div>
-    <label>Choose a question</label>
+    <label>CHOOSE A QUESTION</label>
     <select onChange={handleCurrentQ}>
       {questions.map(question => <option key={question.id}>{question.question}</option>)}
     </select>
     <br/>
-    <label>Or write your own question</label><textarea onChange={handleCurrentQ}placeholder="type your question here"/>
+    <label>OR WRITE YOUR OWN</label><textarea onChange={handleCurrentQ}/>
     </div>
   )
 }

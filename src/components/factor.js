@@ -16,8 +16,10 @@ class Factor extends Component{
         innerRef={provided.innerRef}
         isdragging={snapshot.isDragging}
       >
-    {this.props.factor.name}
-    <button onClick={()=>this.props.handleDelete(this.props.factor)}>X</button>
+      <button className='xbutton' onClick={()=>this.props.handleDelete(this.props.factor)}>X</button>
+      {this.props.factor.name}
+    <button className='button' onClick={()=>this.props.handlePro(this.props.factor)}>PRO</button>
+    <button className='button' onClick={()=>this.props.handleCon(this.props.factor)}>CON</button>
     </Container>
 
     )}

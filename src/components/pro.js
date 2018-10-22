@@ -15,9 +15,9 @@ class Pro extends Component{
         innerRef={provided.innerRef}
         isdragging={snapshot.isDragging}
       >
+      <button className='xbutton' onClick={()=>this.props.handleProDelete(this.props.pro)}>X</button>
       {this.props.name}
       <input onChange={(e)=>this.props.handleProSlider(this.props.pro,e)}type="range" min="0" max="1" name="pro-slider" value={this.props.weightedPros[this.props.id]} step="0.10" class="slider" id="myRange" key={this.props.name} />
-      <button onClick={()=>this.props.handleProDelete(this.props.pro)}>X</button>
     </Container>
 
     )}
