@@ -16,7 +16,7 @@ class Pro extends Component{
         isdragging={snapshot.isDragging}
       >
       {this.props.name}
-      <input onChange={(e)=>this.props.handleProSlider(this.props.pro,e)}type="range" min="0" max="1" name="pro-slider" value={this.props.weight} step="0.10" class="slider" id="myRange" key={this.props.name} />
+      <input onChange={(e)=>this.props.handleProSlider(this.props.pro,e)}type="range" min="0" max="1" name="pro-slider" value={this.props.weightedPros[this.props.id]} step="0.10" class="slider" id="myRange" key={this.props.name} />
       <button onClick={()=>this.props.handleProDelete(this.props.pro)}>X</button>
     </Container>
 
@@ -26,4 +26,11 @@ class Pro extends Component{
   }
 }
 
-export default connect(null,{handleProDelete, handleProSlider})(Pro)
+const mapStateToProps = state => {
+  return{
+    ...state,
+    weightedPros: state.weightedPros
+  }
+}
+
+export default connect(mapStateToProps,{handleProDelete, handleProSlider})(Pro)

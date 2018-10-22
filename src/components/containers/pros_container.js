@@ -18,7 +18,7 @@ const Container = styled.div``
           innerRef={provided.innerRef}
           {...provided.droppableProps}
           isdraggingover={snapshot.isDraggingOver}>
-          {proContainer.factorIds.map((pro, index) => <Pro pro={factors[pro]} id={factors[pro].id} index={index} name={factors[pro].name} weight={factors[pro].weight}/>)}
+          {proContainer.factorIds.map((pro, index) => <Pro pro={factors[pro]} id={factors[pro].id} index={index} name={factors[pro].name} />)}
           {provided.placeholder}
           </TaskList>
         )}
@@ -31,7 +31,6 @@ const mapStateToProps = state => {
   return{
     ...state,
     factors: state.factors,
-    weight: state.weight,
     proContainer: state.containers['container-2']
   }
 }

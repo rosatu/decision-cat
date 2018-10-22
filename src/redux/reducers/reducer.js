@@ -2,10 +2,8 @@ const initialState = {
   currentUser: {name: "Eric Kim", id:1},
   questions: [],
   factors: {},
-  pros: [],
-  weight: .5,
   weightedPros: {},
-  cons: [],
+  weightedCons: {},
   currentQ: '',
     containers: {
       'container-1': {
@@ -149,23 +147,35 @@ export const reducer = (state = initialState, action) => {
         }
       }
       case 'DELETE_CON':
+      const newCons = [...state.containers['container-3'].factorIds.filter(con => con !== action.payload.id)]
       return {
         ...state,
-        factors: [state.factors, action.payload],
-        cons: state.cons.filter(con => con.id !== action.payload.id)
+        containers: {...state.containers,
+          "container-3": {...state.containers['container-3'], factorIds: newCons}
+        }
       }
+
       case 'UPDATE_PRO_WEIGHT':
-      const weightedPro = {...action.payload2, weight: parseFloat(action.payload1)}
+      const newWeightedPros = state.weightedPros
+      newWeightedPros[action.payload2.id] = parseFloat(action.payload1)
       return {
         ...state,
-        pros: [...state.pros.map(pro => pro.id === action.payload2.id ? weightedPro : pro)]
+        weightedPros: newWeightedPros
       }
       case 'UPDATE_CON_WEIGHT':
-      const weightedCon = {...action.payload2, weight: parseFloat(action.payload1)}
+      const newWeightedCons = state.weightedCons
+      newWeightedCons[action.payload2.id] = parseFloat(action.payload1)
       return {
         ...state,
-        cons: [...state.cons.map(con => con.id === action.payload2.id ? weightedCon : con)]
+        weightedCons: newWeightedCons
       }
+
+      // case 'UPDATE_CON_WEIGHT':
+      // const weightedCon = {...action.payload2, weight: parseFloat(action.payload1)}
+      // return {
+      //   ...state,
+      //   cons: [...state.cons.map(con => con.id === action.payload2.id ? weightedCon : con)]
+      // }
       case 'DECIDE':
       return {
         ...state,
