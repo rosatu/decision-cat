@@ -141,15 +141,17 @@ export const reducer = (state = initialState, action) => {
         }
       }
       case 'DELETE_PRO':
+      const newPros = [...state.containers['container-2'].factorIds.filter(pro => pro !== action.payload.id)]
       return {
         ...state,
-        factors: [...state.factors, action.payload],
-        pros: state.pros.filter(pro => pro.id !== action.payload.id)
+        containers: {...state.containers,
+          "container-2": {...state.containers['container-2'], factorIds: newPros}
+        }
       }
       case 'DELETE_CON':
       return {
         ...state,
-        factors: [...state.factors, action.payload],
+        factors: [state.factors, action.payload],
         cons: state.cons.filter(con => con.id !== action.payload.id)
       }
       case 'UPDATE_PRO_WEIGHT':
