@@ -14,8 +14,8 @@ class Con extends Component{
         {...provided.dragHandleProps}
         innerRef={provided.innerRef}
       >
+      {this.props.name}<hr/>
       <button className='xbutton' onClick={()=>this.props.handleConDelete(this.props.con)}>X</button>
-      {this.props.name}
       <input onChange={(e)=>this.props.handleConSlider(this.props.con,e)}type="range" min="0" max="1" name="pro-slider" value={this.props.weightedPros[this.props.id]} step="0.10" class="slider" id="myRange" key={this.props.name} />
     </Container>
 

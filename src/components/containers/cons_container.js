@@ -12,7 +12,7 @@ const Container = styled.div``
     return(
     <Container className='column'>
     <h3 className='title'>CONS</h3>
-      <label>{"LESS IMPORTANT <========> MORE IMPORTANT"}</label>
+      <label className='label'>{"IMPORTANCE: LESS <===> MORE"}</label>
       <Droppable droppableId={conContainer}>
       {provided=>(
           <TaskList
