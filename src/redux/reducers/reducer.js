@@ -56,9 +56,12 @@ export const reducer = (state = initialState, action) => {
       currentQ: action.payload
     }
     case 'ADD_FACTOR':
+    const newFactors = {...state.factors}
+    newFactors[action.payload.id] = action.payload
+
     return {
       ...state,
-      factors: [...state.factors, action.payload]
+      factors: newFactors
     }
     case "DRAG_END":
     const {destination, source, draggableId} = action.payload

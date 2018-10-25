@@ -4,7 +4,9 @@ import {connect} from 'react-redux'
 const QuestionDisplay = ({currentQ}) => {
   return (
     <div>
-    <h2>{currentQ}</h2>
+      <label className="label">QUESTION:</label><h1>{currentQ}</h1>
+    <br/>
+      <label className="label">When you've weighed your pros and cons, CLICK THE CAT</label>
     </div>
   )
 

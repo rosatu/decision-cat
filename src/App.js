@@ -16,15 +16,14 @@ class App extends Component {
     this.props.loadQuestions()
     this.props.loadFactors()
   }
-
   ModalModalExample = (str, percent) => (
-  <Modal className='modal-btn' trigger={<Button>DecisionCat has made a decision for you</Button>}>
-    <Modal.Header>DecisionCat says:</Modal.Header>
+  <Modal className='modal-btn' trigger={<Button color="red" size="large" >DecisionCat has made a decision for you</Button>}closeIcon>
+    <Modal.Header>You wanted to know "{this.props.currentQ}" DecisionCat says:</Modal.Header>
     <Modal.Content image>
       <Image wrapped size='medium' src={logo} />
       <Modal.Description>
         <Header className='answer'>{`${str}`}</Header>
-        <p>You are {percent} percent sure about this decision</p>
+        <p>DecisionCat is {percent} percent sure about this decision</p>
       </Modal.Description>
     </Modal.Content>
   </Modal>
@@ -36,27 +35,27 @@ class App extends Component {
       <div>
 
         <div className="App-header">
-          <img onClick={()=>this.props.handleDecide(this.props.weightedPros, this.props.weightedCons, this.props.currentQ)} src={logo} className="App-logo" alt="logo" />
+          <img onClick={()=>this.props.handleDecide(this.props.weightedPros, this.props.weightedCons, this.props.currentQ, this.props.currentUser)} src={logo} className="App-logo" alt="logo" />
       </div>
         <Grid divided='vertically'>
           <Grid.Column className="short-column">
-        <QuestionsContainer />
+        <QuestionsContainer  />
         </Grid.Column>
           <Grid.Column className='short-column'>
         <QuestionDisplay/>
         </Grid.Column>
       </Grid>
-      <h2 className='welcome-modal'>{this.props.decision ? (this.props.decision > 50 ? this.ModalModalExample("YES.  GOOD.  DO IT.", parseInt(this.props.decision)):this.ModalModalExample("NO.  ABORT.  DO NOT DO IT.", (100 - parseInt(this.props.decision)))):null}</h2>
+      <h2 className='welcome-modal'>{this.props.decision ? (this.props.decision > 50 ? this.ModalModalExample("YES.  DO IT.", parseInt(this.props.decision)):this.ModalModalExample("NO.  DO NOT DO IT.", (100 - parseInt(this.props.decision)))):null}</h2>
         <DragDropContext
             onDragEnd={this.props.onDragEnd}>
           <Grid divided='vertically'>
-              <Grid.Column className='third'>
+              <Grid.Column className='third-f'>
                 <FactorsContainer factors={this.props.factors} />
               </Grid.Column>
               <Grid.Column className='third'>
                 <ProsContainer factors={this.props.factors} />
               </Grid.Column>
-              <Grid.Column className='third'>
+              <Grid.Column className='third-c'>
                 <ConsContainer factors={this.props.factors} />
               </Grid.Column>
           </Grid>
@@ -76,7 +75,8 @@ const mapStateToProps = (state) => {
     currentQ:state.currentQ,
     weightedPros:state.weightedPros,
     weightedCons:state.weightedCons,
-    decision:state.decision
+    decision:state.decision,
+    currentUser:state.currentUser
 
   }
 }

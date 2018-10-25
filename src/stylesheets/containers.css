@@ -3,7 +3,26 @@
   padding: 1%;
   /* border: solid lightpink; */
   border-radius: 2px;
-  background: lightgrey;
+  background:  #A9BA9D;
+  min-height: 500px;
+  min-width: 25%
+}
+
+.third-f {
+  margin: 2%;
+  padding: 1%;
+  /* border: solid lightpink; */
+  border-radius: 2px;
+  background: #9AC0CD;
+  min-height: 500px;
+  min-width: 25%
+}
+.third-c {
+  margin: 2%;
+  padding: 1%;
+  /* border: solid lightpink; */
+  border-radius: 2px;
+  background: #FFB2B2;
   min-height: 500px;
   min-width: 25%
 }
@@ -17,14 +36,11 @@
   min-height: 130px;
   min-width: 40%;
   font-size: 15pt;
-  background: lightgrey;
   font-weight: 300;
 }
 
 .short-column:hover {
-  background-color: black;
   transform: scale(1.1);
-  color: white;
 }
 
 .taskList {
@@ -58,34 +74,28 @@
 }
 
 .taskList:hover {
-  background-color: black;
   transform: scale(1.2);
-  color: white;
 }
 
 .title {
   padding: 8px;
-  font-size: 25pt;
+  font-size: 40pt;
   font-weight: 300;
   text-align: center;
 }
 
 .title:hover {
-  background-color: black;
   transform: scale(1.5);
-  color: white;
 }
 
 .label {
   padding: 8px;
-  font-size: 15pt;
-  font-weight: 300;
+  font-size: 20pt;
+  font-weight: 400;
 }
 
 .label:hover {
-  background-color: black;
   transform: scale(1.2);
-  color: white;
 }
 
 .answer{
@@ -106,11 +116,29 @@
   font-weight: 100;
   transition: 0.3s
 }
+
+.dec-btn {
+  border: solid lightgrey;
+  padding: 5px;
+  font-size: 1em;
+  font-weight: 100;
+  transition: 0.3s
+}
+
 .xbutton {
   border: solid lightgrey;
   padding: 5px;
   font-size: 1em;
   font-weight: 100;
   transition: 0.3s;
-  background: darkgrey
+  background: darkgrey;
+  color:red
+}
+.q-container {
+  border: solid lightgrey;
+  padding: 5px;
+  font-size: 1em;
+  font-weight: 100;
+  transition: 0.3s;
+  color:red
 }

@@ -113,7 +113,7 @@ export const handleConSlider = (con, e) => {
   }
 }
 
-export const handleDecide = (pros,cons,currentQ) =>{
+export const handleDecide = (pros,cons,currentQ, currentUser) =>{
   console.log("decide",pros,cons,currentQ)
   return (dispatch) => {
     fetch('http://localhost:3000/api/v1/decide',{
@@ -125,7 +125,8 @@ export const handleDecide = (pros,cons,currentQ) =>{
       body: JSON.stringify({
         currentQ,
         pros,
-        cons})
+        cons,
+        currentUser})
     })
     .then(r=> r.json())
     .then(decision => dispatch({
